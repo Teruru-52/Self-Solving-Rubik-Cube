@@ -482,7 +482,7 @@ start = time.time()
 solution = search.start_search()
 print(f"Finished! ({time.time() - start:.2f} sec.)")
 if solution:
-  print(f"Solution: {solution}.")
+  print(f'Solution: "{solution}"')
 else:
   print("Solution not found.")
 
@@ -563,7 +563,7 @@ class Search:
         depth = 0
         while depth <= self.max_solution_length:
             if self.depth_limited_search_ph1(co_index, eo_index, e_comb_index, depth):
-                return " ".join(self.current_solution_ph1) + " . " + " ".join(self.current_solution_ph2)
+                return " ".join(self.current_solution_ph1) + " " + " ".join(self.current_solution_ph2)
             depth += 1
         return None
 
@@ -576,7 +576,7 @@ class Search:
             if self.depth_limited_search_ph2(cp_index, udep_index, eep_index, depth):
                 return True
             depth += 1
-            
+
 """Phase2探索プログラムの動作確認"""
 scramble = "R' U' F R' B' F2 L2 D' U' L2 F2 D' L2 D' R B D2 L D2 F2 U2 L R' U' F"
 scrambled_state = scamble2state(scramble)
@@ -585,6 +585,6 @@ start = time.time()
 solution = search.start_search()
 print(f"Finished! ({time.time() - start:.4f} sec.)")
 if solution:
-  print(f"Solution: {solution}.")
+  print(f'Solution: "{solution}"')
 else:
   print("Solution not found.")
