@@ -1,14 +1,15 @@
 import a4988
 import RPi.GPIO as GPIO
+from time import sleep
 
 class Motor:
     def __init__(self):
-        self.motor_U = a4988.A4988(Pin_dir=0, Pin_step=5)
-        self.motor_D = a4988.A4988(Pin_dir=6, Pin_step=13)
-        self.motor_L = a4988.A4988(Pin_dir=26, Pin_step=19)
-        self.motor_R = a4988.A4988(Pin_dir=17, Pin_step=27)
-        self.motor_F = a4988.A4988(Pin_dir=22, Pin_step=10)
-        self.motor_B = a4988.A4988(Pin_dir=9, Pin_step=11)
+        self.motor_L = a4988.A4988(Pin_dir=26, Pin_step=19, Pin_enable = 21)
+        self.motor_D = a4988.A4988(Pin_dir=6, Pin_step=13, Pin_enable = 20)
+        self.motor_U = a4988.A4988(Pin_dir=0, Pin_step=5, Pin_enable = 16)
+        self.motor_R = a4988.A4988(Pin_dir=27, Pin_step=17, Pin_enable = 1)
+        self.motor_F = a4988.A4988(Pin_dir=10, Pin_step=22, Pin_enable = 7)
+        self.motor_B = a4988.A4988(Pin_dir=9, Pin_step=11, Pin_enable = 8)
 
     def Solve(self, scramble):
         for move_name in scramble.split(" "):
@@ -56,6 +57,7 @@ class Motor:
 
             else:
                 print("no move_name")
+            sleep(0.3)
 
     def Cleanup(self):
         GPIO.cleanup()
