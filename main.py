@@ -1,9 +1,8 @@
-# import motors
-# import IDA_star
-# import Two_hase_Algorithm
+import motors
 import random
 from shutil import move
-import time
+import time 
+from time import sleep
 from functools import lru_cache
 
 NUM_CORNERS = 8
@@ -484,11 +483,17 @@ def Create_scramble(scramble_length):
     random_scramble = " ".join(random.choices(move_names.split(), k=scramble_length))
     return random_scramble
 
+print('start scramble')
+sleep(5)
+
 scramble_length = 20
 random_scramble = Create_scramble(scramble_length)
 print('random_scramble = ', random_scramble)
-# motor = motors.Motor()
-# motor.Solve(random_scramble)
+motor = motors.Motor()
+motor.Solve(random_scramble)
+
+sleep(2)
+print('start solving')
 
 """Phase1探索プログラムの動作確認"""
 # scramble = "R' U' F R' B' F2 L2 D' U' L2 F2 D' L2 D' R B D2 L D2 F2 U2 L R' U' F"
@@ -604,4 +609,5 @@ if solution:
   print(f'Solution: "{solution}"')
 else:
   print("Solution not found.")
-# motor.Solve(solution)
+motor.Solve(solution)
+motor.Cleanup()
