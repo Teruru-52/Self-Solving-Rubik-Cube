@@ -14,26 +14,30 @@ class A4988:
         GPIO.setup(self.mPin_step, GPIO.OUT)
         GPIO.setup(self.mPin_enable, GPIO.OUT)
 
-        GPIO.output(self.mPin_enable, GPIO.LOW)
+        GPIO.output(self.mPin_enable, GPIO.HIGH)
 
     def SetWaitTime(self, wait):
         self.mStep_wait = wait
 
     def Step_CW(self, step_count):
+        GPIO.output(self.mPin_enable, GPIO.LOW)
         GPIO.output(self.mPin_dir, 0)
         for i in range(step_count):
             GPIO.output(self.mPin_step, GPIO.HIGH)
             sleep(self.mStep_wait)
             GPIO.output(self.mPin_step, GPIO.LOW)
             sleep(self.mStep_wait)
+        GPIO.output(self.mPin_enable, GPIO.HIGH)
 
     def Step_CCW(self, step_count):
+        GPIO.output(self.mPin_enable, GPIO.LOW)
         GPIO.output(self.mPin_dir, 1)
         for i in range(step_count):
             GPIO.output(self.mPin_step, GPIO.HIGH)
             sleep(self.mStep_wait)
             GPIO.output(self.mPin_step, GPIO.LOW)
             sleep(self.mStep_wait)
+        GPIO.output(self.mPin_enable, GPIO.HIGH)
 
     # def Cleanup(self):
     #     GPIO.cleanup()

@@ -4,8 +4,8 @@ from time import sleep
 
 class Motor:
     def __init__(self):
-        self.motor_L = a4988.A4988(Pin_dir=26, Pin_step=19, Pin_enable = 21)
-        self.motor_D = a4988.A4988(Pin_dir=6, Pin_step=13, Pin_enable = 20)
+        self.motor_L = a4988.A4988(Pin_dir=26, Pin_step=19, Pin_enable = 20)
+        self.motor_D = a4988.A4988(Pin_dir=6, Pin_step=13, Pin_enable = 21)
         self.motor_U = a4988.A4988(Pin_dir=0, Pin_step=5, Pin_enable = 16)
         self.motor_R = a4988.A4988(Pin_dir=27, Pin_step=17, Pin_enable = 1)
         self.motor_F = a4988.A4988(Pin_dir=10, Pin_step=22, Pin_enable = 7)
@@ -57,7 +57,7 @@ class Motor:
 
             else:
                 print("no move_name")
-            sleep(0.3)
+            # sleep(0.3)
 
     def Cleanup(self):
         GPIO.cleanup()
